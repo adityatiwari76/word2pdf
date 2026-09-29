@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2f5bea">
+  <title>Word to PDF converter</title>
+  <meta name="description" content="Convert Word documents to PDF online. No sign-up, and your file is deleted right after conversion.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-state="idle">
+  <div class="page">
+    <div class="ghost" id="ghost" aria-hidden="true">DOCX</div>
+
+    <main class="layout">
+      <header class="intro">
+        <h1 id="headline">Word in.<br>PDF out.</h1>
+        <p id="lead">Drop in a Word file and get a PDF back in seconds. No sign-up, and your file is deleted the moment it is converted.</p>
+      </header>
+
+      <div class="stage">
+        <div class="tilt">
+          <div class="flipper" id="flipper">
+
+            <!-- Front of the page: the Word file -->
+            <label class="face front" id="front" for="fileInput">
+              <input type="file" id="fileInput" class="sr-only" accept=".doc,.docx,.odt,.rtf">
+              <span class="badge" id="badge">DOCX</span>
+              <span class="ptitle" id="frontTitle">Drop a Word file here</span>
+              <span class="psub" id="frontSub">or tap to browse. .doc, .docx, .odt and .rtf, up to 20 MB.</span>
+              <span class="lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="beam" aria-hidden="true"></span>
+            </label>
+
+            <!-- Back of the page: the finished PDF -->
+            <div class="face back" id="back" aria-hidden="true">
+              <span class="badge pdf">PDF</span>
+              <span class="ptitle" id="backTitle">document.pdf</span>
+              <span class="psub" id="backSub">Ready to download.</span>
+              <span class="lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="stamp" aria-hidden="true">Converted</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="buttons">
+          <label class="btn primary" for="fileInput" data-when="idle">Choose a file</label>
+          <button class="btn primary" id="convertBtn" type="button" data-when="ready">Convert to PDF</button>
+          <button class="btn primary" type="button" disabled data-when="working"><span class="spin" aria-hidden="true"></span>Converting</button>
+          <a class="btn primary" id="downloadLink" data-when="done">Download PDF</a>
+          <label class="btn ghost" for="fileInput" data-when="ready">Choose a different file</label>
+          <button class="btn ghost" id="resetBtn" type="button" data-when="done">Convert another file</button>
+        </div>
+        <p class="error" id="error" role="alert" hidden></p>
+      </div>
+
+      <div class="facts">
+        <ul>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" /></svg>Files are deleted right after conversion</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" /></svg>No account or email needed</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" /></svg>Works with .doc, .docx, .odt and .rtf</li>
+        </ul>
+        <p class="fine">Pages are rendered with LibreOffice, so documents that use unusual fonts can look slightly different from how Word shows them.</p>
+      </div>
+    </main>
+  </div>
+
+  <p class="sr-only" id="status" aria-live="polite"></p>
+  <noscript><p style="padding:20px;color:#fff">This page needs JavaScript to convert files.</p></noscript>
+  <script src="script.js"></script>
+</body>
+</html>
